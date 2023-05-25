@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 import { PokemonForm } from 'components/Pokemon/PokemonForm/PokemonForm';
 import { PokemonInfo } from 'components/Pokemon/PokemonInfo/PokemonInfo';
+import { CounterReducer } from 'components/CounterReducer/CounterReducer';
 import 'react-toastify/dist/ReactToastify.css';
 
 const colorPickerOptions = [
@@ -18,31 +19,31 @@ const colorPickerOptions = [
 ];
 
 export const App = () => {
-  const [isClick, setIsClick] = useState(false)
-  const [pokemonName, setPokemonName] = useState("")
-  
-    return (
-      <>
-        <div style={{ maxWidth: 1170, margin: '0 auto', padding: 20 }}>
-          <PokemonForm onSubmit={setPokemonName} />
-          <PokemonInfo pokemonName={pokemonName} />
-          {/* {loading && <p>Loading...</p>} */}
+  const [isClick, setIsClick] = useState(false);
+  const [pokemonName, setPokemonName] = useState('');
 
-          <ToastContainer autoClose={3000} />
-        </div>
-        <br />
-        <SignUpForm />
-        <ColorPicker options={colorPickerOptions} />
-        <Counter />
-        {!isClick && <Clock />}
-        {isClick && <div>Component unmount</div>}
-        <button type="button" onClick={() => setIsClick(!isClick)}>
-          {isClick ? 'Mount' : 'Unmount'}
-        </button>
-      </>
-    );
-  }
+  return (
+    <>
+      <div style={{ maxWidth: 1170, margin: '0 auto', padding: 20 }}>
+        <PokemonForm onSubmit={setPokemonName} />
+        <PokemonInfo pokemonName={pokemonName} />
+        {/* {loading && <p>Loading...</p>} */}
 
+        <ToastContainer autoClose={3000} />
+      </div>
+      <br />
+      <SignUpForm />
+      <ColorPicker options={colorPickerOptions} />
+      <CounterReducer />
+      <Counter />
+      {!isClick && <Clock />}
+      {isClick && <div>Component unmount</div>}
+      <button type="button" onClick={() => setIsClick(!isClick)}>
+        {isClick ? 'Mount' : 'Unmount'}
+      </button>
+    </>
+  );
+};
 
 // export class App extends Component {
 //   state = {
